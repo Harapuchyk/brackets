@@ -1,8 +1,9 @@
 module.exports = function check(str, bracketsConfig) {
-  const brackets =  []; 
+  const brackets =  []; //['(', '{', '[', '|' , '1' , '3', '5', '7', '8'];  
   for (i = 0; i < bracketsConfig.length; i++) {
   brackets.push(bracketsConfig[i][0]);
   }     
+
   const bracketsPair = {
     [')']: '(',
     ['}']: '{',    
@@ -12,23 +13,21 @@ module.exports = function check(str, bracketsConfig) {
     ['3']: '4', 
     ['5']: '6', 
     ['7']: '7', 
-    ['8']: '8'
+    ['8']: '8',
   };
   let counterl = 0;
   let counter7 = 0;
   let counter8 = 0;
   let stack = [];
-  let delElement = ''; 
   for (let i = 0; i < str.length; i++) {
-    let currentSymbol = str[i];
-    delElement = '';    
-    if (currentSymbol === '|'){
+    let currentSymbol = str[i];    
+    if (brackets.includes(currentSymbol) && currentSymbol === '|'){
       counterl = counterl + 1;      
       } 
-    if (currentSymbol === '7'){
+    if (brackets.includes(currentSymbol) && currentSymbol === '7'){
       counter7 = counter7 + 1;      
       } 
-    if (currentSymbol === '8'){
+    if (brackets.includes(currentSymbol) && currentSymbol === '8'){
       counter8 = counter8 + 1;      
       } 
 
@@ -41,15 +40,15 @@ module.exports = function check(str, bracketsConfig) {
       }    
       let lastElement = stack[stack.length-1];
       if (bracketsPair[currentSymbol] === lastElement) {
-        delElement = stack.pop();
+        let delElement = stack.pop();
         if (delElement === '|') {
-          counterl = 0;          
+          counterl = 0;
         }
         if (delElement === '7') {
-          counter7 = 0;          
+          counter7 = 0;
         } 
         if (delElement === '8') {
-          counter8 = 0;          
+          counter8 = 0;
         }         
       }
       else {
