@@ -1,5 +1,5 @@
 module.exports = function check(str, bracketsConfig) {
-  const brackets =  []; 
+  const brackets =  [];  
   for (i = 0; i < bracketsConfig.length; i++) {
   brackets.push(bracketsConfig[i][0]);
   }     
@@ -8,9 +8,9 @@ module.exports = function check(str, bracketsConfig) {
     ['}']: '{',    
     [']']: '[',
     ['|']: '|',
-    ['1']: '2', 
-    ['3']: '4', 
-    ['5']: '6', 
+    ['2']: '1', 
+    ['4']: '3', 
+    ['6']: '5', 
     ['7']: '7', 
     ['8']: '8'
   };
@@ -31,7 +31,6 @@ module.exports = function check(str, bracketsConfig) {
     if (currentSymbol === '8'){
       counter8 = counter8 + 1;      
       } 
-
     if (brackets.includes(currentSymbol) && counterl < 2  && counter7 < 2 && counter8 < 2) {
       stack.push(currentSymbol);
     }
